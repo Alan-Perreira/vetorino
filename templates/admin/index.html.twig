@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+  <h1 class="h3 mb-3 font-weight-normal">Ajouté votre animal de compagnie</h1>
+
+  {{ form_start(dogForm) }}
+  {{ form_row(dogForm.name, {
+  label: 'Nom du chien'
+  }) }}
+  {{ form_row(dogForm.race, {
+  label: 'Race du chien'
+  }) }}
+
+  <button type="submit" class="btn btn-primary mt-2">Ajouté</button>
+  {{ form_end(dogForm) }}
+  <div class="container mt-5">
+    <div class="row ">
+      <section class="col-lg-6 col-md-12 mx-lg-auto">
+        <div class="list-group">
+          <ul class="list-group-item list-group-item-action">
+
+            {% for propertie in properties %}
+            <form class="mt-2" method="post" action="{{ path('delete', {id: propertie.id}) }}">
+            <li class="d-flex w-100 justify-content-between">
+              <input type="checkbox" name="{{propertie.id}}" value="{{propertie.id}}">
+              <h5 class="mb-1">{{propertie.name}}</h5>
+              <small>{{propertie.race}}</small>
+              {% if app.user.id is defined %}
+              {% if app.user.id == propertie.user.Id %}
+
+              <button type="submit" class="btn btn-sm btn-danger" id="btnSupp">Supprimer</button>
+              {% endif %}
+
+            {% endif %}
+            </li>
+          </form>
+            {% endfor %}
+
+          </ul>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="container mt-5">
+    <div class="row ">
+      <section class="col-lg-6 col-md-12 mx-lg-auto">
+        <div class="list-group">
+          <ul class="list-group-item list-group-item-action">
+
+            {% for propertie in properties %}
+            <li class="d-flex w-100 justify-content-between mt-2">
+              <input type="checkbox" name="{{propertie.id}}" value="{{propertie.id}}">
+              <h5 class="mb-1">{{propertie.name}}</h5>
+              <small>{{propertie.race}}</small>
+              {% if app.user.id is defined %}
+              {% if app.user.id == propertie.user.Id %}
+              <a  href="{{ path('edit', {id: propertie.id}) }}" class="btn btn-sm btn-primary" id="btnModif">Modifier</a>
+              {% endif %}
+
+            {% endif %}
+            </li>
+            {% endfor %}
+
+          </ul>
+        </div>
+      </section>
+    </div>
+  </div>
+
+
+
+
+
+
+</div>
+{% endblock %}

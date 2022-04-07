@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block title 'Gérer les animaux' %}
+{% block body %}
+
+    <div class="container mt-5">
+        <h1>Editer l'animal</h1>
+          {{ form_start(dogForm) }}
+          {{ form_row(dogForm.name, {
+          label: 'Nom du chien'
+          }) }}
+          {{ form_row(dogForm.race, {
+          label: 'Race du chien'
+          }) }}
+
+          <button type="submit" class="btn btn-primary mt-2">Editer</button>
+          {{ form_end(dogForm) }}
+    </div>
+
+
+{% endblock %}

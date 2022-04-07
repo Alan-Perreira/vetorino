@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+<main>
+
+  <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="head-img">
+
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>Bienvenu sur Veterino Test</h1>
+            <p>Ici vous pourrez visualiser les propriétaires avec leurs animaux</p>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Marketing messaging and featurettes
+  ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+
+  <div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    {% if dogs is defined %}
+    {% for dog in dogs %}
+    <div class="row">
+      <div class="col-lg-4">
+        <img src="{{asset('images/anon.jpg')}}" alt="">
+
+        <h2>Nom du chien : {{dog.name}}</h2>
+        <p> Race du chien : {{dog.race}}</p>
+      </div><!-- /.col-lg-4 -->
+
+    </div><!-- /.row -->
+
+    {% endfor %}
+
+  {% endif %}
+
+
+    <!-- START THE FEATURETTES -->
+
+
+
+    <!-- /END THE FEATURETTES -->
+
+  </div><!-- /.container -->
+
+
+  <!-- FOOTER -->
+  <footer class="container">
+    <p>&copy; 2022 Vetorino Test</p>
+  </footer>
+</main>
+
+{% endblock %}

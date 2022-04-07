@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+  <form action="{{ path('login') }}" method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            tu es connecté {{ app.user.username }}, <a href="{{ path('logout') }}">Logout</a>
+        </div>
+    {% endif %}
+
+    <h1 class="h3 mb-3 font-weight-normal">Connecte toi !</h1>
+    <label for="username">Email:</label>
+        <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}"/>
+
+        <label for="password">Password:</label>
+        <input  class="form-control" type="password" id="password" name="_password"/>
+
+
+    <button class="btn btn-primary mt-2" type="submit">Connexion</button>
+  </form>
+
+</div>
+{% endblock %}
